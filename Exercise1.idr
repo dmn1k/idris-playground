@@ -14,3 +14,4 @@ top_ten list = take 10 (reverse (sort list))
 
 over_length : Nat -> List String -> Nat
 over_length minLength list = length (filter (> minLength) (map length list))
+

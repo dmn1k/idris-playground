@@ -1,6 +1,6 @@
 module Average
 
-export
+public export
 average : String -> Double 
 average str = let numWords = wordCount str
                   totalLength = sum (allLengths (words str)) in

@@ -18,10 +18,6 @@ addMatrix [] [] = []
 addMatrix (x :: xs) (y :: ys) = let remainingResult= addMatrix xs ys in
                                     addRow x y :: remainingResult
 
-createEmpty : Num a => (mat1 : Vect x (Vect 0 a)) -> Vect x (Vect y a)
-createEmpty [] = []
-createEmpty (x :: xs) = replicate _ 0 :: createEmpty xs
-
 {- 
     [1, 2]   [1, 2]   [7, 10]
     [3, 4] x [3, 4] = [15, 18]
@@ -40,11 +36,11 @@ buildRowElement (x :: xs) (y :: ys) = x * y + buildRowElement xs ys
 
 buildRow : Num a => Vect m a -> Vect y (Vect m a) -> Vect y a
 buildRow [] [] = []
-buildRow [] transposedY = replicate _ 0 
 buildRow xRow [] = []
 buildRow xRow (y :: ys) = buildRowElement xRow y :: buildRow xRow ys 
 
 multMatrix : Num a => Vect x (Vect m a) -> Vect m (Vect y a) -> Vect x (Vect y a)
 multMatrix [] [] = []
+multMatrix [] matY = []
 multMatrix (x :: xs) matY = let transposedY = transposeMat matY in
                                 buildRow x transposedY :: multMatrix xs matY

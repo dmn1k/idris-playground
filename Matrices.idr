@@ -1,7 +1,8 @@
 import Data.Vect
 
 createEmpties : Vect n (Vect 0 elem)
-createEmpties = replicate _ [] 
+createEmpties {n = Z} = []
+createEmpties {n = (S k)} = [] :: createEmpties
 
 transposeHelper : (x : Vect n elem) -> (xsTrans : Vect n (Vect len elem)) -> Vect n (Vect (S len) elem)
 transposeHelper [] [] = []
